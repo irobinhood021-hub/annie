@@ -185,10 +185,10 @@ export default function VelvetCurtains({ data, isOpen, onOpen, onStartMusic }) {
                   {data.name}
                 </h3>
                 <p className="text-xs sm:text-sm font-mono tracking-[0.2em] uppercase text-cream-100/80 mt-1">
-                  Ananya Akshara • 18th Birthday ✨
+                  {data.name} • 18th Birthday ✨
                 </p>
                 <p className="text-base text-cream-200/90 font-serif italic mt-3 max-w-sm mx-auto">
-                  Wishing the most wonderful 18th milestone to Annie!
+                  Wishing the most wonderful 18th milestone to {data.name}!
                 </p>
               </div>
             </div>
@@ -249,7 +249,7 @@ export default function VelvetCurtains({ data, isOpen, onOpen, onStartMusic }) {
         >
           <div className="absolute w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-3xl pointer-events-none animate-pulse" />
 
-          {/* Heading: Annie's Birthday (Ananya Akshara) */}
+          {/* Heading: Annie's Birthday */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -265,7 +265,7 @@ export default function VelvetCurtains({ data, isOpen, onOpen, onStartMusic }) {
               {data.name}'s Birthday
             </h1>
             <p className="text-amber-200/80 font-serif italic text-base sm:text-lg mt-2 tracking-wide">
-              Ananya Akshara • Turning 18 on 23 Nov 2026
+              {data.name} • Turning 18 on 23 Nov 2026
             </p>
           </motion.div>
 

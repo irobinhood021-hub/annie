@@ -15,9 +15,6 @@ export default function CurvedRibbon({ data }) {
   const [isPaused, setIsPaused] = useState(false);
   const [containerSize, setContainerSize] = useState({ width: 1200, height: 680 });
   const [cardPositions, setCardPositions] = useState([]);
-  const names = ['Annie', 'Ananya', 'Akshara'];
-  const [nameIndex, setNameIndex] = useState(0);
-  const nameToggle = names[nameIndex];
 
   // Base canvas coordinate system matching the reference screenshot exactly
   const BASE_WIDTH = 1200;
@@ -188,17 +185,8 @@ export default function CurvedRibbon({ data }) {
             <h1 className="text-5xl md:text-7xl font-serif text-[#161212] leading-[1.08] tracking-tight">
               Happy <br />
               Birthday <br />
-              <span className="inline-block relative">
-                <span className="italic font-normal font-serif text-[#161212]">
-                  {nameToggle}
-                </span>
-                <button
-                  onClick={() => setNameIndex((prev) => (prev + 1) % names.length)}
-                  title="Switch between Annie / Ananya / Akshara"
-                  className="ml-3 text-[10px] font-mono tracking-widest text-[#8C2735] hover:underline uppercase align-middle bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200 cursor-pointer shadow-2xs"
-                >
-                  → {names[(nameIndex + 1) % names.length]}
-                </button>
+              <span className="italic font-normal font-serif text-[#161212]">
+                {data.name}
               </span>
             </h1>
 
@@ -294,17 +282,8 @@ export default function CurvedRibbon({ data }) {
           <div className="text-left mb-6 pt-2">
             <h1 className="text-4xl sm:text-5xl font-serif text-[#161212] leading-[1.1] tracking-tight">
               Happy Birthday <br />
-              <span className="inline-block relative">
-                <span className="italic font-normal font-serif text-[#161212]">
-                  {nameToggle}
-                </span>
-                <button
-                  onClick={() => setNameIndex((prev) => (prev + 1) % names.length)}
-                  title="Switch between Annie / Ananya / Akshara"
-                  className="ml-2.5 text-[10px] font-mono tracking-widest text-[#8C2735] uppercase align-middle bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200 cursor-pointer shadow-2xs"
-                >
-                  → {names[(nameIndex + 1) % names.length]}
-                </button>
+              <span className="italic font-normal font-serif text-[#161212]">
+                {data.name}
               </span>
             </h1>
 

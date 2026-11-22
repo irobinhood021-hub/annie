@@ -43,7 +43,7 @@ export default function Footer({ data }) {
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-zinc-500 gap-2">
-          <span>Crafted with love for Annie's Special Day ❤️</span>
+          <span>Crafted with love for {data.name}'s Special Day ❤️</span>
           <span>Birthday Special Edition • 2026</span>
         </div>
       </div>
