@@ -45,8 +45,11 @@ export default function CurvedRibbon({ data }) {
     const list = [];
     for (let i = 0; i < totalCards; i++) {
       const srcPhoto = data.ribbonPhotos[i % data.ribbonPhotos.length];
+      const imageSrc = srcPhoto.url || srcPhoto.src || srcPhoto.image;
       list.push({
         ...srcPhoto,
+        src: imageSrc,
+        url: imageSrc,
         uniqueId: `card-${i}`,
         // One featured card highlighted in color at apex
         isSpecialFeatured: i === 10
@@ -139,13 +142,19 @@ export default function CurvedRibbon({ data }) {
 
   // Split photos into two rows for the mobile photo strip
   const mobileRow1 = useMemo(() => {
-    const row = data.ribbonPhotos.slice(0, 10);
-    return [...row, ...row]; // double for seamless infinite marquee loop
+    const row = data.ribbonPhotos.slice(0, 10).map(p => ({
+      ...p,
+      src: p.url || p.src || p.image
+    }));
+    return [...row, ...row];
   }, [data.ribbonPhotos]);
 
   const mobileRow2 = useMemo(() => {
-    const row = data.ribbonPhotos.slice(10, 20);
-    return [...row, ...row]; // double for seamless infinite marquee loop
+    const row = data.ribbonPhotos.slice(10, 20).map(p => ({
+      ...p,
+      src: p.url || p.src || p.image
+    }));
+    return [...row, ...row];
   }, [data.ribbonPhotos]);
 
   return (
@@ -262,7 +271,7 @@ export default function CurvedRibbon({ data }) {
                 >
                   <div className="w-full h-full rounded-xl overflow-hidden bg-neutral-200">
                     <img
-                      src={photo.src}
+                      src={photo.src || photo.url}
                       alt={photo.caption}
                       className={`w-full h-full object-cover transition-all duration-300 ${
                         isHighlighted ? 'grayscale-0 contrast-105' : 'grayscale contrast-95'
@@ -349,7 +358,7 @@ export default function CurvedRibbon({ data }) {
                   className="mx-1.5 w-[110px] sm:w-[130px] aspect-[4/5] rounded-xl overflow-hidden bg-white p-1 shadow-sm border border-amber-200/50 cursor-pointer active:scale-95 transition-transform flex-shrink-0"
                 >
                   <img
-                    src={item.src}
+                    src={item.src || item.url}
                     alt={item.caption}
                     className="w-full h-full object-cover rounded-lg"
                     loading="lazy"
@@ -370,7 +379,7 @@ export default function CurvedRibbon({ data }) {
                   className="mx-1.5 w-[110px] sm:w-[130px] aspect-[4/5] rounded-xl overflow-hidden bg-white p-1 shadow-sm border border-amber-200/50 cursor-pointer active:scale-95 transition-transform flex-shrink-0"
                 >
                   <img
-                    src={item.src}
+                    src={item.src || item.url}
                     alt={item.caption}
                     className="w-full h-full object-cover rounded-lg"
                     loading="lazy"
@@ -408,7 +417,7 @@ export default function CurvedRibbon({ data }) {
               </button>
               <div className="w-full aspect-[4/5] rounded-xl overflow-hidden mb-3 bg-neutral-900">
                 <img
-                  src={modalPhoto.src}
+                  src={modalPhoto.src || modalPhoto.url}
                   alt={modalPhoto.caption}
                   className="w-full h-full object-cover"
                 />
