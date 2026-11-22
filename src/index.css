@@ -129,6 +129,37 @@
   animation: burn-disintegrate 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+/* Mobile Filmstrip Marquee Animations */
+@keyframes marquee-scroll-left {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes marquee-scroll-right {
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-left 24s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-right 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover,
+.paused-marquee {
+  animation-play-state: paused !important;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -144,4 +175,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a9967c;
 }
-

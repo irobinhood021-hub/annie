@@ -14,7 +14,7 @@ function PageLeftContent({ spread, data, pageNumber }) {
       <div className="absolute bottom-4 left-4 w-5 h-5 border-b-2 border-l-2 border-[#1C1818]/60 pointer-events-none" />
       <div className="absolute bottom-4 right-4 w-5 h-5 border-b-2 border-r-2 border-[#1C1818]/60 pointer-events-none" />
 
-      {/* Subtle paper grain texture */}
+      {/* Paper grain texture */}
       <div className="absolute inset-0 bg-[radial-gradient(#d6cbba_0.6px,transparent_0.6px)] [background-size:20px_20px] opacity-30 pointer-events-none" />
 
       <div className="text-center pt-2 relative z-10">
@@ -23,7 +23,7 @@ function PageLeftContent({ spread, data, pageNumber }) {
         </span>
 
         {/* Main Masthead */}
-        <h2 className="text-5xl sm:text-7xl lg:text-8xl font-serif font-black tracking-tight text-[#111010] leading-none mb-1">
+        <h2 className="text-4xl sm:text-7xl lg:text-8xl font-serif font-black tracking-tight text-[#111010] leading-none mb-1">
           {spread.pageLeft.headline}
         </h2>
 
@@ -31,7 +31,7 @@ function PageLeftContent({ spread, data, pageNumber }) {
           {spread.pageLeft.subheadline}
         </h3>
 
-        <div className="my-4 sm:my-6 flex items-center justify-center gap-3">
+        <div className="my-3 sm:my-6 flex items-center justify-center gap-3">
           <div className="w-10 sm:w-14 h-px bg-[#111010]/30" />
           <span className="text-[10px] sm:text-[11px] font-serif tracking-[0.2em] text-[#8C2735] uppercase font-bold">
             {spread.pageLeft.ornament}
@@ -67,8 +67,8 @@ function PageLeftContent({ spread, data, pageNumber }) {
 // Right Page Photo Collage Layout
 function PageRightContent({ spread, data, pageNumber }) {
   return (
-    <div className="w-full h-full p-6 sm:p-10 flex flex-col justify-between relative bg-[#FAF6ED] select-none overflow-hidden">
-      {/* Subtle paper grain texture */}
+    <div className="w-full h-full p-5 sm:p-10 flex flex-col justify-between relative bg-[#FAF6ED] select-none overflow-hidden">
+      {/* Paper grain texture */}
       <div className="absolute inset-0 bg-[radial-gradient(#d6cbba_0.6px,transparent_0.6px)] [background-size:20px_20px] opacity-30 pointer-events-none" />
 
       {/* Header with handwritten note */}
@@ -115,16 +115,22 @@ function PageRightContent({ spread, data, pageNumber }) {
 }
 
 export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
+  // Desktop 2-page spread index
   const [currentSpreadIndex, setCurrentSpreadIndex] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
-  const [flipDirection, setFlipDirection] = useState('next'); // 'next' | 'prev'
+  const [flipDirection, setFlipDirection] = useState('next');
   const [targetSpreadIndex, setTargetSpreadIndex] = useState(0);
 
+  // Mobile single-page reader index (0 to totalMobilePages - 1)
   const totalSpreads = data.magazine.spreads.length;
+  const totalMobilePages = totalSpreads * 2;
+  const [mobilePageIndex, setMobilePageIndex] = useState(0);
+
   const currentSpread = data.magazine.spreads[currentSpreadIndex];
   const targetSpread = data.magazine.spreads[targetSpreadIndex];
 
-  const handleNext = () => {
+  // Desktop Navigation
+  const handleDesktopNext = () => {
     if (isFlipping) return;
     const nextIdx = (currentSpreadIndex + 1) % totalSpreads;
     setTargetSpreadIndex(nextIdx);
@@ -133,7 +139,7 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
     sounds.playPageTurn();
   };
 
-  const handlePrev = () => {
+  const handleDesktopPrev = () => {
     if (isFlipping) return;
     const prevIdx = (currentSpreadIndex - 1 + totalSpreads) % totalSpreads;
     setTargetSpreadIndex(prevIdx);
@@ -141,6 +147,34 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
     setIsFlipping(true);
     sounds.playPageTurn();
   };
+
+  // Mobile Single Page Navigation (turns one page at a time)
+  const handleMobileNext = () => {
+    if (isFlipping) return;
+    setFlipDirection('next');
+    setIsFlipping(true);
+    sounds.playPageTurn();
+    setTimeout(() => {
+      setMobilePageIndex((prev) => (prev + 1) % totalMobilePages);
+      setIsFlipping(false);
+    }, 280);
+  };
+
+  const handleMobilePrev = () => {
+    if (isFlipping) return;
+    setFlipDirection('prev');
+    setIsFlipping(true);
+    sounds.playPageTurn();
+    setTimeout(() => {
+      setMobilePageIndex((prev) => (prev - 1 + totalMobilePages) % totalMobilePages);
+      setIsFlipping(false);
+    }, 280);
+  };
+
+  // Compute active mobile spread and side
+  const activeMobileSpreadIndex = Math.floor(mobilePageIndex / 2);
+  const isMobileLeftPage = mobilePageIndex % 2 === 0;
+  const activeMobileSpread = data.magazine.spreads[activeMobileSpreadIndex];
 
   const handleShare = () => {
     sounds.playPop();
@@ -158,29 +192,29 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
   };
 
   return (
-    <section id="magazine" className="relative py-20 px-4 sm:px-8 bg-[#F8F4EC] select-none">
-      {/* Top Editorial Monogram matching Screen 4 */}
-      <div className="max-w-6xl mx-auto flex items-center justify-between py-4 border-b border-[#E3D9C9] mb-10 text-[#4D423D]">
-        <span className="text-xs font-mono tracking-widest uppercase">The Editorial Archive</span>
+    <section id="magazine" className="relative py-14 sm:py-20 px-3 sm:px-8 bg-[#F8F4EC] select-none">
+      {/* Top Editorial Monogram */}
+      <div className="max-w-6xl mx-auto flex items-center justify-between py-3 sm:py-4 border-b border-[#E3D9C9] mb-8 sm:mb-10 text-[#4D423D]">
+        <span className="text-[10px] sm:text-xs font-mono tracking-widest uppercase">The Editorial Archive</span>
         <div className="flex flex-col items-center">
-          <span className="text-xl">🌿</span>
-          <span className="text-[10px] tracking-[0.3em] font-serif uppercase text-[#8A7970]">Maison de VOGUE</span>
+          <span className="text-lg sm:text-xl">🌿</span>
+          <span className="text-[9px] sm:text-[10px] tracking-[0.3em] font-serif uppercase text-[#8A7970]">Maison de VOGUE</span>
         </div>
-        <span className="text-xs font-mono tracking-widest uppercase">Issue No. 18</span>
+        <span className="text-[10px] sm:text-xs font-mono tracking-widest uppercase">Issue No. 18</span>
       </div>
 
-      {/* 3D Realistic Open Book Container with Page Turn */}
+      {/* Main Magazine Container */}
       <div className="max-w-5xl mx-auto relative" style={{ perspective: '2400px' }}>
 
-        {/* Desktop & Tablet: Realistic 3D Two-Page Spread with Book Spine */}
+        {/* ========================================================= */}
+        {/* 1. DESKTOP / LAPTOP: Realistic 3D 2-Page Open Book Spread */}
+        {/* ========================================================= */}
         <div className="hidden md:block relative w-full h-[600px] rounded-2xl shadow-[0_30px_70px_-15px_rgba(0,0,0,0.25)] border border-[#E8DFC9] bg-[#FAF6ED] overflow-hidden">
-
-          {/* Realistic Center Book Spine Crease & Depth Shadows */}
+          {/* Central Book Spine Crease */}
           <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-10 bg-gradient-to-r from-black/20 via-black/5 to-black/20 z-30 pointer-events-none shadow-inner" />
 
-          {/* LAYER 1: BASE SPREAD (Underneath) */}
+          {/* Underneath Base Spread */}
           <div className="absolute inset-0 grid grid-cols-2">
-            {/* Base Left Page */}
             <div className="w-full h-full">
               <PageLeftContent
                 spread={flipDirection === 'prev' && isFlipping ? targetSpread : currentSpread}
@@ -188,9 +222,7 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
                 pageNumber={((flipDirection === 'prev' && isFlipping ? targetSpreadIndex : currentSpreadIndex) * 2) + 1}
               />
             </div>
-
-            {/* Base Right Page */}
-            <div className="w-full h-full cursor-pointer" onClick={handleNext}>
+            <div className="w-full h-full cursor-pointer" onClick={handleDesktopNext}>
               <PageRightContent
                 spread={flipDirection === 'next' && isFlipping ? targetSpread : currentSpread}
                 data={data}
@@ -199,17 +231,14 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
             </div>
           </div>
 
-          {/* LAYER 2: 3D ANIMATED FLIPPING PAGE LEAF (Active during turn) */}
+          {/* 3D Animated Flipping Page Leaf on Turn */}
           <AnimatePresence>
             {isFlipping && flipDirection === 'next' && (
               <motion.div
                 key={`flip-next-${currentSpreadIndex}`}
                 initial={{ rotateY: 0 }}
                 animate={{ rotateY: -180 }}
-                transition={{
-                  duration: 0.85,
-                  ease: [0.4, 0.0, 0.2, 1] // Natural page turn inertia
-                }}
+                transition={{ duration: 0.85, ease: [0.4, 0.0, 0.2, 1] }}
                 onAnimationComplete={() => {
                   setCurrentSpreadIndex(targetSpreadIndex);
                   setIsFlipping(false);
@@ -225,7 +254,6 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
                   zIndex: 40
                 }}
               >
-                {/* FRONT FACE of flipping page (Current Right Page) */}
                 <div
                   style={{
                     position: 'absolute',
@@ -241,7 +269,6 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
                     data={data}
                     pageNumber={currentSpreadIndex * 2 + 2}
                   />
-                  {/* Dynamic page curl shadow */}
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: [0, 0.35, 0] }}
@@ -250,7 +277,6 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
                   />
                 </div>
 
-                {/* BACK FACE of flipping page (Next Left Page) */}
                 <div
                   style={{
                     position: 'absolute',
@@ -266,7 +292,6 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
                     data={data}
                     pageNumber={targetSpreadIndex * 2 + 1}
                   />
-                  {/* Dynamic landing shadow */}
                   <motion.div
                     initial={{ opacity: 0.35 }}
                     animate={{ opacity: 0 }}
@@ -282,10 +307,7 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
                 key={`flip-prev-${currentSpreadIndex}`}
                 initial={{ rotateY: 0 }}
                 animate={{ rotateY: 180 }}
-                transition={{
-                  duration: 0.85,
-                  ease: [0.4, 0.0, 0.2, 1]
-                }}
+                transition={{ duration: 0.85, ease: [0.4, 0.0, 0.2, 1] }}
                 onAnimationComplete={() => {
                   setCurrentSpreadIndex(targetSpreadIndex);
                   setIsFlipping(false);
@@ -301,7 +323,6 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
                   zIndex: 40
                 }}
               >
-                {/* FRONT FACE of flipping page (Current Left Page) */}
                 <div
                   style={{
                     position: 'absolute',
@@ -325,7 +346,6 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
                   />
                 </div>
 
-                {/* BACK FACE of flipping page (Prev Right Page) */}
                 <div
                   style={{
                     position: 'absolute',
@@ -353,38 +373,65 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
           </AnimatePresence>
         </div>
 
-        {/* Mobile View: High-fidelity Touch Flip Card */}
-        <div className="md:hidden relative w-full min-h-[560px] rounded-2xl shadow-xl border border-[#E8DFC9] bg-[#FAF6ED] overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSpreadIndex}
-              initial={{ opacity: 0, rotateY: flipDirection === 'next' ? 65 : -65, scale: 0.95 }}
-              animate={{ opacity: 1, rotateY: 0, scale: 1 }}
-              exit={{ opacity: 0, rotateY: flipDirection === 'next' ? -65 : 65, scale: 0.95 }}
-              transition={{ duration: 0.65, ease: 'easeInOut' }}
-              className="w-full h-full flex flex-col"
-            >
-              <PageLeftContent
-                spread={currentSpread}
-                data={data}
-                pageNumber={currentSpreadIndex * 2 + 1}
-              />
-              <div className="h-px bg-[#E3D9C9] my-2" />
-              <PageRightContent
-                spread={currentSpread}
-                data={data}
-                pageNumber={currentSpreadIndex * 2 + 2}
-              />
-            </motion.div>
-          </AnimatePresence>
+
+        {/* ========================================================= */}
+        {/* 2. MOBILE: Authentic Single-Page Reader (One Page at a time) */}
+        {/* ========================================================= */}
+        <div className="md:hidden block relative w-full">
+          <div
+            onClick={handleMobileNext}
+            className="relative w-full min-h-[510px] rounded-2xl shadow-xl border border-[#E8DFC9] bg-[#FAF6ED] overflow-hidden cursor-pointer"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={mobilePageIndex}
+                initial={{
+                  opacity: 0,
+                  rotateY: flipDirection === 'next' ? 70 : -70,
+                  scale: 0.96
+                }}
+                animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+                exit={{
+                  opacity: 0,
+                  rotateY: flipDirection === 'next' ? -70 : 70,
+                  scale: 0.96
+                }}
+                transition={{ duration: 0.45, ease: 'easeOut' }}
+                className="w-full h-full min-h-[510px] flex flex-col justify-between"
+              >
+                {isMobileLeftPage ? (
+                  <PageLeftContent
+                    spread={activeMobileSpread}
+                    data={data}
+                    pageNumber={mobilePageIndex + 1}
+                  />
+                ) : (
+                  <PageRightContent
+                    spread={activeMobileSpread}
+                    data={data}
+                    pageNumber={mobilePageIndex + 1}
+                  />
+                )}
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Tap hint overlay at bottom right */}
+            <div className="absolute bottom-3 right-3 z-20 pointer-events-none bg-black/40 backdrop-blur-xs text-white text-[10px] font-mono px-2 py-0.5 rounded-full">
+              Tap to Turn ➔
+            </div>
+          </div>
         </div>
 
-        {/* Bottom Floating Control Bar matching Screen 4 */}
-        {/* [< PREV] [PREV] [1 to 4] [NEXT >] [PLAY & SHARE] [🎵 MUSIC] */}
-        <div className="mt-8 flex items-center justify-center">
-          <div className="inline-flex items-center gap-1.5 sm:gap-3 px-4 sm:px-6 py-2.5 rounded-full bg-[#1C1818] text-[#FFF8ED] text-xs font-mono tracking-wider shadow-2xl border border-amber-400/20">
+
+        {/* ========================================================= */}
+        {/* Bottom Control Bar */}
+        {/* ========================================================= */}
+        <div className="mt-7 flex items-center justify-center">
+
+          {/* Desktop Controls */}
+          <div className="hidden md:inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-[#1C1818] text-[#FFF8ED] text-xs font-mono tracking-wider shadow-2xl border border-amber-400/20">
             <button
-              onClick={handlePrev}
+              onClick={handleDesktopPrev}
               disabled={isFlipping}
               className="px-2.5 py-1 rounded-md hover:bg-white/15 active:scale-95 transition-all cursor-pointer flex items-center gap-1 disabled:opacity-50"
             >
@@ -397,7 +444,7 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
             </span>
 
             <button
-              onClick={handleNext}
+              onClick={handleDesktopNext}
               disabled={isFlipping}
               className="px-2.5 py-1 rounded-md hover:bg-white/15 active:scale-95 transition-all cursor-pointer flex items-center gap-1 disabled:opacity-50"
             >
@@ -412,7 +459,7 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
               className="px-2.5 py-1 rounded-md hover:bg-rose-900/60 transition-colors cursor-pointer flex items-center gap-1.5 text-rose-300 hover:text-white"
             >
               <Share2 className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">PLAY & SHARE</span>
+              <span>PLAY & SHARE</span>
             </button>
 
             <button
@@ -422,14 +469,50 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
               }`}
             >
               <Music className={`w-3.5 h-3.5 ${isMusicPlaying ? 'animate-bounce' : ''}`} />
-              <span className="hidden sm:inline">MUSIC</span>
+              <span>MUSIC</span>
             </button>
           </div>
+
+          {/* Mobile Controls: Single Page Navigation */}
+          <div className="md:hidden flex items-center gap-2 px-4 py-2 rounded-full bg-[#1C1818] text-[#FFF8ED] text-[11px] font-mono tracking-wider shadow-xl border border-amber-400/30">
+            <button
+              onClick={handleMobilePrev}
+              disabled={isFlipping}
+              className="px-2 py-1 rounded hover:bg-white/15 active:scale-95 transition-all cursor-pointer flex items-center gap-0.5"
+            >
+              <ChevronLeft className="w-3.5 h-3.5" />
+              <span>PREV</span>
+            </button>
+
+            <span className="px-2 py-0.5 text-amber-300 font-bold">
+              Page {mobilePageIndex + 1} of {totalMobilePages}
+            </span>
+
+            <button
+              onClick={handleMobileNext}
+              disabled={isFlipping}
+              className="px-2 py-1 rounded hover:bg-white/15 active:scale-95 transition-all cursor-pointer flex items-center gap-0.5"
+            >
+              <span>NEXT</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+
+            <div className="w-px h-3.5 bg-white/20 mx-0.5" />
+
+            <button
+              onClick={handleShare}
+              className="p-1 rounded text-rose-300 active:scale-95"
+              title="Share"
+            >
+              <Share2 className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
         </div>
 
         {/* Gentle hint */}
-        <p className="text-center text-[11px] font-mono text-[#8C7A70] mt-3">
-          Tip: Click NEXT / PREV or tap directly on the pages to flip the magazine
+        <p className="text-center text-[10px] sm:text-[11px] font-mono text-[#8C7A70] mt-3">
+          Tip: Tap NEXT / PREV or tap directly on the page to turn the magazine
         </p>
       </div>
     </section>
