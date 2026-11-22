@@ -16,31 +16,31 @@ export const BIRTHDAY_DATA = {
     tagline: "TO ANNIE • TURNING 18 TODAY"
   },
 
-  // 20 Photos for the curved looping photo ribbon
+  // 20 Photos for the curved looping photo ribbon (Super-fast lightweight WebP thumbnails + full-res modal)
   ribbonPhotos: [
-    { id: 1, url: "/photos/photo-1.jpg", src: "/photos/photo-1.jpg", caption: "Sweet Smile ✨" },
-    { id: 2, url: "/photos/photo-2.jpg", src: "/photos/photo-2.jpg", caption: "Golden Hour Glow ☀️" },
-    { id: 3, url: "/photos/photo-3.jpg", src: "/photos/photo-3.jpg", caption: "Pure Elegance 🌸" },
-    { id: 4, url: "/photos/photo-4.jpg", src: "/photos/photo-4.jpg", caption: "Candid Joy 💕" },
-    { id: 5, url: "/photos/photo-5.jpg", src: "/photos/photo-5.jpg", caption: "Little Moments ☕" },
-    { id: 6, url: "/photos/photo-6.jpg", src: "/photos/photo-6.jpg", caption: "Forever Muse 🌙" },
-    { id: 7, url: "/photos/photo-7.jpg", src: "/photos/photo-7.jpg", caption: "Stargazer 💫" },
-    { id: 8, url: "/photos/photo-8.jpg", src: "/photos/photo-8.jpg", caption: "In Full Bloom 🌷" },
-    { id: 9, url: "/photos/photo-9.jpg", src: "/photos/photo-9.jpg", caption: "Unfiltered Laughs 💖" },
-    { id: 10, url: "/photos/photo-10.jpg", src: "/photos/photo-10.jpg", caption: "Sunny Days 🌻" },
-    { id: 11, url: "/photos/photo-11.jpg", src: "/photos/photo-11.jpg", caption: "Dreaming Awake ✨" },
-    { id: 12, url: "/photos/photo-12.jpg", src: "/photos/photo-12.jpg", caption: "Soft Light 📸" },
-    { id: 13, url: "/photos/photo-13.jpg", src: "/photos/photo-13.jpg", caption: "Cozy Vibes 🕊️" },
-    { id: 14, url: "/photos/photo-14.jpg", src: "/photos/photo-14.jpg", caption: "Sunset Whispers 🌅" },
-    { id: 15, url: "/photos/photo-15.jpg", src: "/photos/photo-15.jpg", caption: "Always Beautiful 🫶" },
-    { id: 16, url: "/photos/photo-16.jpg", src: "/photos/photo-16.jpg", caption: "Annie's Glow 💌" },
-    { id: 17, url: "/photos/photo-17.jpg", src: "/photos/photo-17.jpg", caption: "That Cute Smile 🥰" },
-    { id: 18, url: "/photos/photo-18.jpg", src: "/photos/photo-18.jpg", caption: "Endless Charm 🤍" },
-    { id: 19, url: "/photos/photo-19.jpg", src: "/photos/photo-19.jpg", caption: "Grace & Kindness 🌿" },
-    { id: 20, url: "/photos/photo-20.jpg", src: "/photos/photo-20.jpg", caption: "Happy 18th Birthday Annie! 🎂" },
+    { id: 1, url: "/photos/photo-1-thumb.webp", src: "/photos/photo-1-thumb.webp", fullUrl: "/photos/photo-1.webp", caption: "Sweet Smile ✨" },
+    { id: 2, url: "/photos/photo-2-thumb.webp", src: "/photos/photo-2-thumb.webp", fullUrl: "/photos/photo-2.webp", caption: "Golden Hour Glow ☀️" },
+    { id: 3, url: "/photos/photo-3-thumb.webp", src: "/photos/photo-3-thumb.webp", fullUrl: "/photos/photo-3.webp", caption: "Pure Elegance 🌸" },
+    { id: 4, url: "/photos/photo-4-thumb.webp", src: "/photos/photo-4-thumb.webp", fullUrl: "/photos/photo-4.webp", caption: "Candid Joy 💕" },
+    { id: 5, url: "/photos/photo-5-thumb.webp", src: "/photos/photo-5-thumb.webp", fullUrl: "/photos/photo-5.webp", caption: "Little Moments ☕" },
+    { id: 6, url: "/photos/photo-6-thumb.webp", src: "/photos/photo-6-thumb.webp", fullUrl: "/photos/photo-6.webp", caption: "Forever Muse 🌙" },
+    { id: 7, url: "/photos/photo-7-thumb.webp", src: "/photos/photo-7-thumb.webp", fullUrl: "/photos/photo-7.webp", caption: "Stargazer 💫" },
+    { id: 8, url: "/photos/photo-8-thumb.webp", src: "/photos/photo-8-thumb.webp", fullUrl: "/photos/photo-8.webp", caption: "In Full Bloom 🌷" },
+    { id: 9, url: "/photos/photo-9-thumb.webp", src: "/photos/photo-9-thumb.webp", fullUrl: "/photos/photo-9.webp", caption: "Unfiltered Laughs 💖" },
+    { id: 10, url: "/photos/photo-10-thumb.webp", src: "/photos/photo-10-thumb.webp", fullUrl: "/photos/photo-10.webp", caption: "Sunny Days 🌻" },
+    { id: 11, url: "/photos/photo-11-thumb.webp", src: "/photos/photo-11-thumb.webp", fullUrl: "/photos/photo-11.webp", caption: "Dreaming Awake ✨" },
+    { id: 12, url: "/photos/photo-12-thumb.webp", src: "/photos/photo-12-thumb.webp", fullUrl: "/photos/photo-12.webp", caption: "Soft Light 📸" },
+    { id: 13, url: "/photos/photo-13-thumb.webp", src: "/photos/photo-13-thumb.webp", fullUrl: "/photos/photo-13.webp", caption: "Cozy Vibes 🕊️" },
+    { id: 14, url: "/photos/photo-14-thumb.webp", src: "/photos/photo-14-thumb.webp", fullUrl: "/photos/photo-14.webp", caption: "Sunset Whispers 🌅" },
+    { id: 15, url: "/photos/photo-15-thumb.webp", src: "/photos/photo-15-thumb.webp", fullUrl: "/photos/photo-15.webp", caption: "Always Beautiful 🫶" },
+    { id: 16, url: "/photos/photo-16-thumb.webp", src: "/photos/photo-16-thumb.webp", fullUrl: "/photos/photo-16.webp", caption: "Annie's Glow 💌" },
+    { id: 17, url: "/photos/photo-17-thumb.webp", src: "/photos/photo-17-thumb.webp", fullUrl: "/photos/photo-17.webp", caption: "That Cute Smile 🥰" },
+    { id: 18, url: "/photos/photo-18-thumb.webp", src: "/photos/photo-18-thumb.webp", fullUrl: "/photos/photo-18.webp", caption: "Endless Charm 🤍" },
+    { id: 19, url: "/photos/photo-19-thumb.webp", src: "/photos/photo-19-thumb.webp", fullUrl: "/photos/photo-19.webp", caption: "Grace & Kindness 🌿" },
+    { id: 20, url: "/photos/photo-20-thumb.webp", src: "/photos/photo-20-thumb.webp", fullUrl: "/photos/photo-20.webp", caption: "Happy 18th Birthday Annie! 🎂" },
   ],
 
-  // Scrapbook Draggable Polaroids & Secret Butterfly Notes
+  // Scrapbook Draggable Polaroids & Secret Butterfly Notes (Optimized WebP)
   scrapbook: {
     title: '"Happy Birthday, Annie!"',
     polaroids: [
@@ -48,7 +48,7 @@ export const BIRTHDAY_DATA = {
         id: "p1",
         label: "Cutie 💖",
         title: "Cutie 💖",
-        image: "/photos/photo-21.jpg",
+        image: "/photos/photo-21.webp",
         rotation: -5,
         slot: "far-left",
         note: {
@@ -60,7 +60,7 @@ export const BIRTHDAY_DATA = {
         id: "p2",
         label: "Baddie 🔥",
         title: "Baddie 🔥",
-        image: "/photos/photo-22.jpg",
+        image: "/photos/photo-22.webp",
         rotation: -2,
         slot: "mid-left",
         note: {
@@ -72,7 +72,7 @@ export const BIRTHDAY_DATA = {
         id: "p3",
         label: "My Life 🫶",
         title: "My Life 🫶",
-        image: "/photos/photo-23.jpg",
+        image: "/photos/photo-23.webp",
         rotation: 0,
         slot: "center",
         note: {
@@ -84,7 +84,7 @@ export const BIRTHDAY_DATA = {
         id: "p4",
         label: "Dream Girl ✨",
         title: "Dream Girl ✨",
-        image: "/photos/photo-24.jpg",
+        image: "/photos/photo-24.webp",
         rotation: 3,
         slot: "mid-right-bottom",
         note: {
@@ -96,7 +96,7 @@ export const BIRTHDAY_DATA = {
         id: "p5",
         label: "Bestie 🥰",
         title: "Bestie 🥰",
-        image: "/photos/photo-25.jpg",
+        image: "/photos/photo-25.webp",
         rotation: 8,
         slot: "top-right",
         note: {
@@ -108,7 +108,7 @@ export const BIRTHDAY_DATA = {
         id: "p6",
         label: "Always You ❤️",
         title: "Always You ❤️",
-        image: "/photos/photo-26.jpg",
+        image: "/photos/photo-26.webp",
         rotation: -4,
         slot: "far-right-bottom",
         note: {
@@ -129,7 +129,7 @@ export const BIRTHDAY_DATA = {
     ]
   },
 
-  // VOGUE Magazine Special Edition Spreads
+  // VOGUE Magazine Special Edition Spreads (Optimized WebP)
   magazine: {
     totalSpreads: 4,
     spreads: [
@@ -146,12 +146,12 @@ export const BIRTHDAY_DATA = {
         pageRight: {
           title: "Who's that girl?",
           images: [
-            "/photos/photo-27.jpg",
-            "/photos/photo-28.jpg",
-            "/photos/photo-29.jpg",
-            "/photos/photo-30.jpg",
-            "/photos/photo-31.jpg",
-            "/photos/photo-32.jpg"
+            "/photos/photo-27.webp",
+            "/photos/photo-28.webp",
+            "/photos/photo-29.webp",
+            "/photos/photo-30.webp",
+            "/photos/photo-31.webp",
+            "/photos/photo-32.webp"
           ],
           note: "Happy 18th Birthday Annie! 💕"
         }
@@ -169,10 +169,10 @@ export const BIRTHDAY_DATA = {
         pageRight: {
           title: "Golden Hour Reverie",
           images: [
-            "/photos/photo-33.jpg",
-            "/photos/photo-34.jpg",
-            "/photos/photo-35.jpg",
-            "/photos/photo-36.jpg"
+            "/photos/photo-33.webp",
+            "/photos/photo-34.webp",
+            "/photos/photo-35.webp",
+            "/photos/photo-36.webp"
           ],
           note: "Forever in your frame ✨"
         }
@@ -190,10 +190,10 @@ export const BIRTHDAY_DATA = {
         pageRight: {
           title: "Now Playing: 'Happy Birthday Tune'",
           images: [
-            "/photos/photo-37.jpg",
-            "/photos/photo-1.jpg",
-            "/photos/photo-2.jpg",
-            "/photos/photo-3.jpg"
+            "/photos/photo-37.webp",
+            "/photos/photo-1.webp",
+            "/photos/photo-2.webp",
+            "/photos/photo-3.webp"
           ],
           note: "Track 01 • Infinite Repeat 🎶"
         }
@@ -211,10 +211,10 @@ export const BIRTHDAY_DATA = {
         pageRight: {
           title: "Forever Love",
           images: [
-            "/photos/photo-4.jpg",
-            "/photos/photo-5.jpg",
-            "/photos/photo-6.jpg",
-            "/photos/photo-7.jpg"
+            "/photos/photo-4.webp",
+            "/photos/photo-5.webp",
+            "/photos/photo-6.webp",
+            "/photos/photo-7.webp"
           ],
           note: "Signed with all my love ❤️"
         }

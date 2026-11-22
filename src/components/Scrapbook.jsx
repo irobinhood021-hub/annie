@@ -362,7 +362,7 @@ export default function Scrapbook({ data }) {
               </div>
             </div>
             <div className="w-full aspect-[4/5] rounded-xs overflow-hidden bg-neutral-100 relative group">
-              <img src={polaroids[0].image} alt="Cutie" className="w-full h-full object-cover" draggable="false" />
+              <img src={polaroids[0].image} alt="Cutie" loading="lazy" decoding="async" className="w-full h-full object-cover" draggable="false" />
               <div onClick={(e) => handleLike(e, 'p1')} className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center shadow-xs cursor-pointer hover:scale-110 active:scale-90">
                 <Heart className={`w-3.5 h-3.5 ${likedCards['p1'] ? 'text-rose-600 fill-rose-600' : 'text-zinc-600'}`} />
               </div>
@@ -389,7 +389,7 @@ export default function Scrapbook({ data }) {
               </div>
             </div>
             <div className="w-full aspect-[4/5] rounded-xs overflow-hidden bg-neutral-100 relative group">
-              <img src={polaroids[1].image} alt="Baddie" className="w-full h-full object-cover" draggable="false" />
+              <img src={polaroids[1].image} alt="Baddie" loading="lazy" decoding="async" className="w-full h-full object-cover" draggable="false" />
               <div onClick={(e) => handleLike(e, 'p2')} className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center shadow-xs cursor-pointer hover:scale-110 active:scale-90">
                 <span className="text-zinc-600 font-bold text-sm">+</span>
               </div>
@@ -413,7 +413,7 @@ export default function Scrapbook({ data }) {
               </div>
             </div>
             <div className="w-full aspect-[4/5] rounded-xs overflow-hidden bg-neutral-100 relative group">
-              <img src={polaroids[2].image} alt="My Life" className="w-full h-full object-cover" draggable="false" />
+              <img src={polaroids[2].image} alt="My Life" loading="lazy" decoding="async" className="w-full h-full object-cover" draggable="false" />
               <div onClick={(e) => handleLike(e, 'p3')} className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center shadow-xs cursor-pointer hover:scale-110 active:scale-90">
                 <Heart className={`w-3.5 h-3.5 ${likedCards['p3'] ? 'text-rose-600 fill-rose-600' : 'text-rose-500 fill-rose-500'}`} />
               </div>
@@ -440,7 +440,7 @@ export default function Scrapbook({ data }) {
               </div>
             </div>
             <div className="w-full aspect-[4/5] rounded-xs overflow-hidden bg-neutral-100 relative group">
-              <img src={polaroids[4].image} alt="Bestie" className="w-full h-full object-cover" draggable="false" />
+              <img src={polaroids[4].image} alt="Bestie" loading="lazy" decoding="async" className="w-full h-full object-cover" draggable="false" />
               <div onClick={(e) => handleLike(e, 'p5')} className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center shadow-xs cursor-pointer hover:scale-110 active:scale-90">
                 <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
               </div>
@@ -464,7 +464,7 @@ export default function Scrapbook({ data }) {
               </div>
             </div>
             <div className="w-full aspect-[4/5] rounded-xs overflow-hidden bg-neutral-100 relative group">
-              <img src={polaroids[3].image} alt="Dream Girl" className="w-full h-full object-cover" draggable="false" />
+              <img src={polaroids[3].image} alt="Dream Girl" loading="lazy" decoding="async" className="w-full h-full object-cover" draggable="false" />
               <div onClick={(e) => handleLike(e, 'p4')} className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center shadow-xs cursor-pointer hover:scale-110 active:scale-90">
                 <Heart className={`w-3.5 h-3.5 ${likedCards['p4'] ? 'text-rose-600 fill-rose-600' : 'text-zinc-600'}`} />
               </div>
@@ -491,7 +491,7 @@ export default function Scrapbook({ data }) {
               </div>
             </div>
             <div className="w-full aspect-[4/5] rounded-xs overflow-hidden bg-neutral-100 relative group">
-              <img src={polaroids[5].image} alt="Always You" className="w-full h-full object-cover" draggable="false" />
+              <img src={polaroids[5].image} alt="Always You" loading="lazy" decoding="async" className="w-full h-full object-cover" draggable="false" />
               <div onClick={(e) => handleLike(e, 'p6')} className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center shadow-xs cursor-pointer hover:scale-110 active:scale-90">
                 <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
               </div>
@@ -559,6 +559,7 @@ export default function Scrapbook({ data }) {
                   alt={card.label}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
 
                 {/* Like Button */}

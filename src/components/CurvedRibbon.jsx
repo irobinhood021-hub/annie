@@ -47,6 +47,7 @@ export default function CurvedRibbon({ data }) {
         ...srcPhoto,
         src: imageSrc,
         url: imageSrc,
+        fullUrl: srcPhoto.fullUrl || imageSrc,
         uniqueId: `card-${i}`,
         // One featured card highlighted in color at apex
         isSpecialFeatured: i === 10
@@ -261,6 +262,8 @@ export default function CurvedRibbon({ data }) {
                     <img
                       src={photo.src || photo.url}
                       alt={photo.caption}
+                      loading={idx < 6 ? "eager" : "lazy"}
+                      decoding="async"
                       className={`w-full h-full object-cover transition-all duration-300 ${
                         isHighlighted ? 'grayscale-0 contrast-105' : 'grayscale contrast-95'
                       }`}
@@ -339,8 +342,9 @@ export default function CurvedRibbon({ data }) {
                   <img
                     src={item.src || item.url}
                     alt={item.caption}
+                    loading={idx < 4 ? "eager" : "lazy"}
+                    decoding="async"
                     className="w-full h-full object-cover rounded-lg"
-                    loading="lazy"
                   />
                 </div>
               ))}
@@ -360,8 +364,9 @@ export default function CurvedRibbon({ data }) {
                   <img
                     src={item.src || item.url}
                     alt={item.caption}
+                    loading={idx < 4 ? "eager" : "lazy"}
+                    decoding="async"
                     className="w-full h-full object-cover rounded-lg"
-                    loading="lazy"
                   />
                 </div>
               ))}
@@ -396,8 +401,9 @@ export default function CurvedRibbon({ data }) {
               </button>
               <div className="w-full aspect-[4/5] rounded-xl overflow-hidden mb-3 bg-neutral-900">
                 <img
-                  src={modalPhoto.src || modalPhoto.url}
+                  src={modalPhoto.fullUrl || modalPhoto.src || modalPhoto.url}
                   alt={modalPhoto.caption}
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>
