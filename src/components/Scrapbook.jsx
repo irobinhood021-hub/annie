@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Sparkles, X } from 'lucide-react';
+import { Heart, Sparkles, X, Play, Pause, Disc, Music, Volume2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { sounds } from '../utils/audio';
 
@@ -101,10 +101,96 @@ function GlowingButterfly({ size = 44, glowRadius = 24, className = '', onClick 
   );
 }
 
+// Retro Draggable Cassette Tape Sticker with spinning reels
+function RetroCassette({ isPlaying, onToggle }) {
+  return (
+    <motion.div
+      drag
+      dragConstraints={{ left: -60, right: 60, top: -40, bottom: 40 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.97 }}
+      onClick={onToggle}
+      className="absolute bottom-6 right-4 sm:right-16 z-30 max-w-[240px] sm:max-w-[260px] bg-[#221F1F] p-3 rounded-lg shadow-xl border border-amber-500/30 rotate-[-4deg] cursor-pointer select-none group"
+    >
+      {/* Washi Tape on top */}
+      <div className="w-16 h-4 washi-tape absolute -top-2 left-1/2 -translate-x-1/2 rotate-2 opacity-90 pointer-events-none" />
+
+      {/* Cassette Header Bar */}
+      <div className="flex items-center justify-between text-[10px] font-mono text-amber-300/80 mb-1.5 px-1">
+        <span className="flex items-center gap-1">
+          <Music className="w-3 h-3 text-rose-400" /> SIDE A
+        </span>
+        <span className="text-zinc-400">HQ STEREO</span>
+      </div>
+
+      {/* Cassette Body / Label */}
+      <div className="bg-[#FFFBF0] rounded p-2 text-center border border-amber-200/50 shadow-inner">
+        <div className="text-[11px] font-serif font-bold text-zinc-900 truncate flex items-center justify-center gap-1">
+          <span>Na Gall Mere Vas Di Rahi</span>
+          <Heart className="w-3 h-3 text-rose-500 fill-rose-500" />
+        </div>
+        <div className="text-[9px] font-mono text-zinc-500 tracking-wider mt-0.5">
+          Annie's Special Track 🎶
+        </div>
+
+        {/* Cassette Window & Reels */}
+        <div className="mt-2 h-7 bg-[#1C1818] rounded-full flex items-center justify-around px-4 border border-zinc-700">
+          {/* Reel Left */}
+          <div className="relative w-5 h-5 rounded-full border border-amber-300/70 flex items-center justify-center bg-zinc-900">
+            <motion.div
+              animate={{ rotate: isPlaying ? 360 : 0 }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+              className="w-3.5 h-3.5 border-2 border-dashed border-amber-400 rounded-full"
+            />
+          </div>
+
+          {/* Tape bridge */}
+          <div className="h-0.5 w-12 bg-amber-500/40 rounded-full" />
+
+          {/* Reel Right */}
+          <div className="relative w-5 h-5 rounded-full border border-amber-300/70 flex items-center justify-center bg-zinc-900">
+            <motion.div
+              animate={{ rotate: isPlaying ? 360 : 0 }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+              className="w-3.5 h-3.5 border-2 border-dashed border-amber-400 rounded-full"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Cassette Footer / Play hint */}
+      <div className="mt-2 flex items-center justify-between text-[10px] font-mono px-1 text-zinc-400">
+        <span className="flex items-center gap-1 text-amber-200">
+          {isPlaying ? <Pause className="w-3 h-3 text-rose-400" /> : <Play className="w-3 h-3 text-amber-400" />}
+          {isPlaying ? 'Playing...' : 'Tap to Play'}
+        </span>
+        <span className="text-[9px] text-zinc-500">23 NOV 2026</span>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Scrapbook({ data }) {
   const [activeTab, setActiveTab] = useState('stories');
   const [selectedNote, setSelectedNote] = useState(null);
   const [likedCards, setLikedCards] = useState({});
+  const [isSongPlaying, setIsSongPlaying] = useState(sounds.isScrapbookPlaying);
+
+  useEffect(() => {
+    // Sync with global audio state
+    const unsubscribe = sounds.subscribe(({ isScrapbookPlaying }) => {
+      setIsSongPlaying(isScrapbookPlaying);
+    });
+    return unsubscribe;
+  }, []);
+
+  const handleToggleSong = () => {
+    sounds.playPop();
+    const playing = sounds.toggleScrapbookMusic((active) => {
+      setIsSongPlaying(active);
+    });
+    setIsSongPlaying(playing);
+  };
 
   const handleLike = (e, id) => {
     e.stopPropagation();
@@ -210,7 +296,7 @@ export default function Scrapbook({ data }) {
       </motion.div>
 
       {/* Main Section Header matching media_1795250159312_8b5f47ee.jpg */}
-      <div className="max-w-4xl mx-auto text-center mb-10 relative z-20">
+      <div className="max-w-4xl mx-auto text-center mb-8 relative z-20">
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -248,6 +334,46 @@ export default function Scrapbook({ data }) {
               )}
             </button>
           ))}
+        </div>
+
+        {/* Scrapbook Section Dedicated Music Player Pill */}
+        <div className="mt-6 flex items-center justify-center">
+          <button
+            onClick={handleToggleSong}
+            className={`group inline-flex items-center gap-3 px-5 py-2 rounded-full backdrop-blur-md transition-all shadow-md cursor-pointer border ${
+              isSongPlaying
+                ? 'bg-[#1C1818] text-amber-200 border-amber-400/60 shadow-amber-500/20'
+                : 'bg-[#FFF8ED]/85 text-[#3A2C26] border-[#D8C7B5] hover:bg-[#FFFBF5]'
+            }`}
+          >
+            {/* Spinning Disc / Note Icon */}
+            <div className="relative">
+              <Disc className={`w-4 h-4 text-rose-500 ${isSongPlaying ? 'animate-spin' : ''}`} />
+            </div>
+
+            <div className="text-left">
+              <span className="text-xs font-serif font-semibold tracking-wide block">
+                {isSongPlaying ? 'Now Playing: Na Gall Mere Vas Di Rahi' : 'Play Scrapbook Song'}
+              </span>
+              <span className="text-[10px] font-mono text-zinc-500 block">
+                Special Romantic Soundtrack 🎵
+              </span>
+            </div>
+
+            {/* Play / Pause Toggle Circle */}
+            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-white flex items-center justify-center ml-1 shadow-sm">
+              {isSongPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 ml-0.5" />}
+            </div>
+
+            {/* Equalizer Wave Bars */}
+            {isSongPlaying && (
+              <span className="flex gap-0.5 items-end h-3 ml-1">
+                <span className="w-0.5 h-3 bg-rose-400 animate-pulse" />
+                <span className="w-0.5 h-2 bg-amber-400 animate-pulse delay-75" />
+                <span className="w-0.5 h-3 bg-rose-400 animate-pulse delay-150" />
+              </span>
+            )}
+          </button>
         </div>
       </div>
 
@@ -288,6 +414,9 @@ export default function Scrapbook({ data }) {
             Love you more than words can hold. Happy Birthday to you! 🌙
           </p>
         </motion.div>
+
+        {/* Retro Cassette Tape on Corkboard Canvas (Draggable & Interactive) */}
+        <RetroCassette isPlaying={isSongPlaying} onToggle={handleToggleSong} />
 
         {/* THE 6 POLAROIDS matching media_1795250159312_8b5f47ee.jpg */}
         <div className="relative w-full h-full min-h-[640px] md:min-h-[720px] flex items-center justify-center">
@@ -426,7 +555,7 @@ export default function Scrapbook({ data }) {
             </div>
           </motion.div>
 
-          {/* CARD 4: Sunshine Girl (Top Right, rotated +8deg) */}
+          {/* CARD 4: Bestie 🥰 (Top Right, rotated +8deg) */}
           <motion.div
             drag
             dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
@@ -445,7 +574,7 @@ export default function Scrapbook({ data }) {
             <div className="w-full aspect-[4/5] rounded-xs overflow-hidden bg-neutral-100 relative group">
               <img
                 src={data.scrapbook.polaroids[4].image}
-                alt="Sunshine Girl"
+                alt="Bestie"
                 className="w-full h-full object-cover"
                 draggable="false"
               />

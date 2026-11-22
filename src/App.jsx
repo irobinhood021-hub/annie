@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BIRTHDAY_DATA } from './data/content';
 import { sounds } from './utils/audio';
 
@@ -14,11 +14,18 @@ export default function App() {
   const [isCurtainOpen, setIsCurtainOpen] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
+  useEffect(() => {
+    // Keep app music state in sync with audio manager
+    const unsubscribe = sounds.subscribe(({ isPlaying }) => {
+      setIsMusicPlaying(isPlaying);
+    });
+    return unsubscribe;
+  }, []);
+
   const handleToggleMusic = () => {
-    const newState = sounds.toggleBackgroundMusic((playing) => {
+    sounds.toggleBackgroundMusic((playing) => {
       setIsMusicPlaying(playing);
     });
-    setIsMusicPlaying(newState);
   };
 
   const handleCurtainOpen = () => {
@@ -28,7 +35,6 @@ export default function App() {
   const handleStartMusic = () => {
     if (!isMusicPlaying) {
       sounds.startBackgroundMusic();
-      setIsMusicPlaying(true);
     }
   };
 
@@ -81,4 +87,3 @@ export default function App() {
     </div>
   );
 }
-

@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play, Pause, Heart, Volume2, VolumeX, Sparkles, Disc } from 'lucide-react';
 import { sounds } from '../utils/audio';
 
 export default function MusicPlayer({ isMusicPlaying, onToggleMusic, personName }) {
   const [liked, setLiked] = useState(true);
+  const [activeTrack, setActiveTrack] = useState(sounds.activeTrack);
+
+  useEffect(() => {
+    const unsub = sounds.subscribe(({ activeTrack }) => {
+      setActiveTrack(activeTrack);
+    });
+    return unsub;
+  }, []);
+
+  const isScrapbook = activeTrack === 'scrapbook';
+  const trackTitle = isScrapbook ? 'Na Gall Mere Vas Di Rahi' : 'Happy Birthday Tune';
+  const trackSub = isScrapbook ? 'Scrapbook Special 🎵' : 'Acoustic Birthday Melody 🎸';
+
+  const handlePlayPause = () => {
+    if (isScrapbook) {
+      sounds.toggleScrapbookMusic();
+    } else {
+      onToggleMusic();
+    }
+  };
 
   return (
     <div className="fixed bottom-5 right-5 z-40 select-none">
@@ -24,7 +44,7 @@ export default function MusicPlayer({ isMusicPlaying, onToggleMusic, personName 
         {/* Track Details */}
         <div className="text-left pr-2">
           <div className="text-xs font-serif font-bold text-amber-200 tracking-wide flex items-center gap-1.5">
-            <span>Happy Birthday Tune</span>
+            <span>{trackTitle}</span>
             {isMusicPlaying && (
               <span className="flex gap-0.5 items-end h-2.5">
                 <span className="w-0.5 h-2 bg-rose-400 animate-pulse" />
@@ -34,14 +54,14 @@ export default function MusicPlayer({ isMusicPlaying, onToggleMusic, personName 
             )}
           </div>
           <div className="text-[10px] font-mono text-zinc-400">
-            Acoustic Birthday Melody 🎸
+            {trackSub}
           </div>
         </div>
 
         {/* Play/Pause Button */}
         <button
-          onClick={onToggleMusic}
-          title={isMusicPlaying ? "Pause Soundtrack" : "Play Birthday Melody"}
+          onClick={handlePlayPause}
+          title={isMusicPlaying ? "Pause Track" : "Play Track"}
           className="w-8 h-8 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-white flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow cursor-pointer"
         >
           {isMusicPlaying ? (
@@ -65,4 +85,3 @@ export default function MusicPlayer({ isMusicPlaying, onToggleMusic, personName 
     </div>
   );
 }
-
