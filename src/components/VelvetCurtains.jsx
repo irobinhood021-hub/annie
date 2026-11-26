@@ -43,11 +43,11 @@ export default function VelvetCurtains({ data, isOpen, onOpen, onStartMusic }) {
     // Trigger age reveal celebration
     setShowAgeCelebration(true);
     setIsBurning(false);
-    setDisplayedAge(data.previousAge || 17);
+    setDisplayedAge(data.previousAge || 18);
 
-    // Flip to 18
+    // Flip to target age (19)
     setTimeout(() => {
-      setDisplayedAge(data.targetAge || 18);
+      setDisplayedAge(data.targetAge || 19);
       sounds.playChime(659.25, 1.5, 'triangle', 0.25);
 
       // Fireworks Confetti burst
@@ -156,11 +156,11 @@ export default function VelvetCurtains({ data, isOpen, onOpen, onStartMusic }) {
             <div className={`text-center z-10 max-w-lg px-6 transition-all duration-300 ${isBurning ? 'burn-away' : ''}`}>
               <div className="text-amber-300 font-serif tracking-[0.25em] uppercase text-xs sm:text-sm mb-3 flex items-center justify-center gap-2">
                 <Sparkles className="w-4 h-4 text-amber-400" />
-                <span>Leveling Up • Officially 18</span>
+                <span>Leveling Up • Officially {data.targetAge || 19}</span>
                 <Sparkles className="w-4 h-4 text-amber-400" />
               </div>
 
-              {/* Prominent Number 18 with 3D Flip & Burning Fire Glow */}
+              {/* Prominent Number with 3D Flip & Burning Fire Glow */}
               <motion.div
                 key={displayedAge}
                 initial={{ rotateX: 90, opacity: 0 }}
@@ -185,10 +185,10 @@ export default function VelvetCurtains({ data, isOpen, onOpen, onStartMusic }) {
                   {data.name}
                 </h3>
                 <p className="text-xs sm:text-sm font-mono tracking-[0.2em] uppercase text-cream-100/80 mt-1">
-                  {data.name} • 18th Birthday ✨
+                  {data.name} • {data.targetAge || 19}th Birthday ✨
                 </p>
                 <p className="text-base text-cream-200/90 font-serif italic mt-3 max-w-sm mx-auto">
-                  Wishing the most wonderful 18th milestone to {data.name}!
+                  Wishing the most wonderful {data.targetAge || 19}th milestone to {data.name}!
                 </p>
               </div>
             </div>
@@ -236,7 +236,7 @@ export default function VelvetCurtains({ data, isOpen, onOpen, onStartMusic }) {
             </div>
 
             <div className="absolute top-6 right-8 text-xs font-mono tracking-widest text-white/40 border border-white/20 px-3 py-1 rounded-full backdrop-blur-sm">
-              special 18th edition
+              special {data.targetAge || 19}th edition
             </div>
           </div>
         </motion.div>
@@ -258,14 +258,14 @@ export default function VelvetCurtains({ data, isOpen, onOpen, onStartMusic }) {
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-rose-200 text-xs tracking-[0.25em] uppercase mb-4 shadow-lg">
               <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-spin" style={{ animationDuration: '6s' }} />
-              A Special 18th Celebration
+              A Special {data.targetAge || 19}th Celebration
               <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-spin" style={{ animationDuration: '6s' }} />
             </div>
             <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif text-[#FFF8ED] drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)] tracking-tight">
               {data.name}'s Birthday
             </h1>
             <p className="text-amber-200/80 font-serif italic text-base sm:text-lg mt-2 tracking-wide">
-              {data.name} • Turning 18 on 23 Nov 2026
+              {data.name} • Turning {data.targetAge || 19} on 23 Nov 2026
             </p>
           </motion.div>
 

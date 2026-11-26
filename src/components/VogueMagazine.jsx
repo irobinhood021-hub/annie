@@ -77,7 +77,7 @@ function PageRightContent({ spread, data, pageNumber }) {
           {spread.pageRight.title} ↗
         </span>
         <span className="text-[10px] font-mono text-[#8F7D74] tracking-wider">
-          VOL. 18
+          VOL. 19
         </span>
       </div>
 
@@ -201,7 +201,7 @@ export default function VogueMagazine({ data, isMusicPlaying, onToggleMusic }) {
           <span className="text-lg sm:text-xl">🌿</span>
           <span className="text-[9px] sm:text-[10px] tracking-[0.3em] font-serif uppercase text-[#8A7970]">Maison de VOGUE</span>
         </div>
-        <span className="text-[10px] sm:text-xs font-mono tracking-widest uppercase">Issue No. 18</span>
+        <span className="text-[10px] sm:text-xs font-mono tracking-widest uppercase">Issue No. 19</span>
       </div>
 
       {/* Main Magazine Container */}

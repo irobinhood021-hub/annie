@@ -1,19 +1,19 @@
-// Centralized content & assets for Annie's 18th Birthday Website
+// Centralized content & assets for Annie's 19th Birthday Website
 
 export const BIRTHDAY_DATA = {
   name: "Annie",
   fullName: "Annie",
   nickname: "Annie",
   aliases: ["Annie"],
-  targetAge: 18,
-  previousAge: 17,
+  targetAge: 19,
+  previousAge: 18,
   // Countdown target date: 23 November 2026
   targetDate: new Date('2026-11-23T00:00:00'),
 
   hero: {
     title: "Happy Birthday Annie",
-    subtitle: "Wishing you a day filled with love, laughter, and all the happiness your heart can hold. May your 18th year bring you endless joy, bright adventures, and unforgettable memories. Happy Birthday!",
-    tagline: "TO ANNIE • TURNING 18 TODAY"
+    subtitle: "Wishing you a day filled with love, laughter, and all the happiness your heart can hold. May your 19th year bring you endless joy, bright adventures, and unforgettable memories. Happy Birthday!",
+    tagline: "TO ANNIE • TURNING 19 TODAY"
   },
 
   // 20 Photos for the curved looping photo ribbon (Super-fast lightweight WebP thumbnails + full-res modal)
@@ -37,7 +37,7 @@ export const BIRTHDAY_DATA = {
     { id: 17, url: "/photos/photo-17-thumb.webp", src: "/photos/photo-17-thumb.webp", fullUrl: "/photos/photo-17.webp", caption: "That Cute Smile 🥰" },
     { id: 18, url: "/photos/photo-18-thumb.webp", src: "/photos/photo-18-thumb.webp", fullUrl: "/photos/photo-18.webp", caption: "Endless Charm 🤍" },
     { id: 19, url: "/photos/photo-19-thumb.webp", src: "/photos/photo-19-thumb.webp", fullUrl: "/photos/photo-19.webp", caption: "Grace & Kindness 🌿" },
-    { id: 20, url: "/photos/photo-20-thumb.webp", src: "/photos/photo-20-thumb.webp", fullUrl: "/photos/photo-20.webp", caption: "Happy 18th Birthday Annie! 🎂" },
+    { id: 20, url: "/photos/photo-20-thumb.webp", src: "/photos/photo-20-thumb.webp", fullUrl: "/photos/photo-20.webp", caption: "Happy 19th Birthday Annie! 🎂" },
   ],
 
   // Scrapbook Draggable Polaroids & Secret Butterfly Notes (Optimized WebP)
@@ -53,7 +53,7 @@ export const BIRTHDAY_DATA = {
         slot: "far-left",
         note: {
           title: "To My Favorite Smile ✨",
-          text: "Looks like you're really good at catching butterflies... no wonder you caught my heart so effortlessly! Every moment with you feels like a page right out of a fairy tale. Happy 18th Birthday Annie! 🦋"
+          text: "Looks like you're really good at catching butterflies... no wonder you caught my heart so effortlessly! Every moment with you feels like a page right out of a fairy tale. Happy 19th Birthday Annie! 🦋"
         }
       },
       {
@@ -77,7 +77,7 @@ export const BIRTHDAY_DATA = {
         slot: "center",
         note: {
           title: "My Whole World 🌸",
-          text: "They say home is a place, but for me, home is whenever I'm talking to you. You make ordinary days feel like once-in-a-lifetime celebrations. Happy 18th Birthday, Annie!"
+          text: "They say home is a place, but for me, home is whenever I'm talking to you. You make ordinary days feel like once-in-a-lifetime celebrations. Happy 19th Birthday, Annie!"
         }
       },
       {
@@ -119,7 +119,7 @@ export const BIRTHDAY_DATA = {
     ],
     stickers: [
       {
-        text: "Love you more than words can hold. Happy 18th Birthday Annie! 🎂",
+        text: "Love you more than words can hold. Happy 19th Birthday Annie! 🎂",
         pos: "right-top"
       },
       {
@@ -135,12 +135,12 @@ export const BIRTHDAY_DATA = {
     spreads: [
       {
         pageLeft: {
-          tag: "ISSUE NO. 18 • SPECIAL EDITION",
+          tag: "ISSUE NO. 19 • SPECIAL EDITION",
           headline: "VOGUE",
           subheadline: "BIRTHDAY SPECIAL EDITION",
           ornament: "✦ THE ART OF CELEBRATION ✦",
           title: "ANNIE",
-          description: "Celebrating the most extraordinary muse on her 18th milestone. A portrait of elegance, grace, kindness, and eternal sunshine that illuminates every single day.",
+          description: "Celebrating the most extraordinary muse on her 19th milestone. A portrait of elegance, grace, kindness, and eternal sunshine that illuminates every single day.",
           quote: "“Some people bring out the worst in you, others bring out the best, and then there are rare people like Annie who bring out the most magical.”"
         },
         pageRight: {
@@ -153,14 +153,14 @@ export const BIRTHDAY_DATA = {
             "/photos/photo-31.webp",
             "/photos/photo-32.webp"
           ],
-          note: "Happy 18th Birthday Annie! 💕"
+          note: "Happy 19th Birthday Annie! 💕"
         }
       },
       {
         pageLeft: {
           tag: "TABLE OF CONTENTS",
           headline: "MEMOIRS",
-          subheadline: "CHAPTER 18",
+          subheadline: "CHAPTER 19",
           ornament: "✦ CHRONICLES OF GRACE ✦",
           title: "WHY YOU OWN MY HEART",
           description: "1. The sound of your real, unfiltered laugh\n2. How deeply and sincerely you care for people\n3. The way your eyes sparkle when you're excited\n4. Your calm presence in a chaotic world\n5. Simply being you, Annie — my favorite blessing.",
@@ -205,8 +205,8 @@ export const BIRTHDAY_DATA = {
           subheadline: "SPECIAL DEDICATION",
           ornament: "✦ THE FINAL WISH ✦",
           title: "DEAR ANNIE",
-          description: "May your 18th year be as breathtaking as a sunset over the ocean. May all your dreams find wings and take flight. You deserve every ounce of happiness in this universe, Annie.",
-          quote: "“Happy 18th Birthday to our favorite girl in the entire world, Annie!”"
+          description: "May your 19th year be as breathtaking as a sunset over the ocean. May all your dreams find wings and take flight. You deserve every ounce of happiness in this universe, Annie.",
+          quote: "“Happy 19th Birthday to our favorite girl in the entire world, Annie!”"
         },
         pageRight: {
           title: "Forever Love",

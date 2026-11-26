@@ -22,7 +22,7 @@ export default function Navbar({ isMusicPlaying, onToggleMusic, onReopenCurtains
         <div className="hidden sm:flex items-center gap-1.5 font-serif text-base sm:text-lg tracking-widest text-[#2D2727] select-none">
           <span className="font-bold uppercase tracking-wider text-xs sm:text-sm font-sans">A</span>
           <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline" />
-          <span className="font-bold uppercase tracking-wider text-xs sm:text-sm font-sans">18</span>
+          <span className="font-bold uppercase tracking-wider text-xs sm:text-sm font-sans">19</span>
         </div>
 
         {/* Right Links & Controls */}
